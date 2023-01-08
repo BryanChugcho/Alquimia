@@ -1,6 +1,7 @@
 package com.alquimia.controller;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.alquimia.dto.OrderRequest;
 import com.alquimia.dto.OrderResponse;
+import com.alquimia.dto.clienteServicio;
 import com.alquimia.modelo.Cliente;
 import com.alquimia.repositorio.ClienteRepositorio;
 import com.alquimia.repositorio.DireccionRepositorio;
@@ -22,6 +24,8 @@ public class OrderController {
 
 	@Autowired
 	private ClienteRepositorio clienteRepositorio ;
+	
+	
 	
 	@Autowired
 	private DireccionRepositorio direccionRepositorio;
@@ -40,7 +44,14 @@ public class OrderController {
 	  
    }
     
-  
+   @PutMapping(value = "/update/{id}")
+  	public Cliente update(@PathVariable("id") Long id, @RequestBody Cliente cliente  ) {
+	  
+	   return clienteServicio.update(id , cliente);
+  		
+  	}
+      
+   
    
    
     @GetMapping("/busqueda")
